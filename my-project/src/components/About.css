@@ -1,0 +1,202 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.bio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Avatar */
+.bio-avatar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar-ring {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--gradient-hero);
+  flex-shrink: 0;
+}
+
+.avatar-inner {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+}
+
+.avatar-badge {
+  background: rgba(57, 211, 83, 0.12);
+  border: 1px solid rgba(57, 211, 83, 0.4);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-green);
+}
+
+.bio-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.bio-role {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+}
+
+.bio-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.bio-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.meta-item {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Timeline */
+.edu-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple), var(--accent-green));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  position: relative;
+}
+
+.tl-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  background: var(--bg-primary);
+  padding: 4px 0;
+}
+
+.tl-content { flex: 1; }
+
+.tl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tl-degree {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tl-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tl-school {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* Internship */
+.internship-card {
+  margin-top: 4px;
+}
+
+.int-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.int-icon { font-size: 1.8rem; }
+
+.int-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.int-company {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+}
+
+.int-desc {
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.int-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Reveal animation targets */
+.reveal { transition-property: opacity, transform; }
+.reveal.visible { opacity: 1 !important; transform: none !important; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
