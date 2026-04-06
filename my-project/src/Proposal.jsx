@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './proposal.css'
 
 const poems = [
@@ -55,6 +55,8 @@ export default function Proposal() {
   const [answered, setAnswered] = useState(null)
   const [noPos, setNoPos] = useState({ x: 0, y: 0 })
   const [poem, setPoem] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const audioRef = useRef(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -62,6 +64,28 @@ export default function Proposal() {
     }, 5000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    const tryPlay = () => {
+      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+    }
+    tryPlay()
+    document.addEventListener('click', tryPlay, { once: true })
+    return () => document.removeEventListener('click', tryPlay)
+  }, [])
+
+  const toggleMusic = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (playing) {
+      audio.pause()
+      setPlaying(false)
+    } else {
+      audio.play().then(() => setPlaying(true))
+    }
+  }
 
   const runAway = () => {
     setNoPos({
@@ -72,6 +96,18 @@ export default function Proposal() {
 
   return (
     <div className="proposal-page">
+      <audio
+        ref={audioRef}
+        src="/music.mp3"
+        loop
+        preload="auto"
+      />
+
+      <button className="music-btn" onClick={toggleMusic} title={playing ? 'Pause music' : 'Play music'}>
+        <span className={`music-icon ${playing ? 'spinning' : ''}`}>🎵</span>
+        <span className="music-label">{playing ? 'Pause' : 'Play'}</span>
+      </button>
+
       <FloatingHearts />
       <Sparkles />
 
