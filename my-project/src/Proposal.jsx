@@ -68,12 +68,15 @@ export default function Proposal() {
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
+    // Browsers block autoplay before user interaction — play on first click anywhere
     const tryPlay = () => {
-      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+      audio.play().then(() => setPlaying(true)).catch(() => {})
     }
+    // Try immediately (works if browser allows)
     tryPlay()
-    document.addEventListener('click', tryPlay, { once: true })
-    return () => document.removeEventListener('click', tryPlay)
+    // Fallback: play on first user interaction
+    document.addEventListener('pointerdown', tryPlay, { once: true })
+    return () => document.removeEventListener('pointerdown', tryPlay)
   }, [])
 
   const toggleMusic = () => {
@@ -103,10 +106,20 @@ export default function Proposal() {
         preload="auto"
       />
 
-      <button className="music-btn" onClick={toggleMusic} title={playing ? 'Pause music' : 'Play music'}>
-        <span className={`music-icon ${playing ? 'spinning' : ''}`}>🎵</span>
-        <span className="music-label">{playing ? 'Pause' : 'Play'}</span>
-      </button>
+      <div className="music-player">
+        <div className="music-bars">
+          {[1,2,3,4].map(b => (
+            <span key={b} className={`bar bar-${b} ${playing ? 'active' : ''}`} />
+          ))}
+        </div>
+        <span className="music-track-name">♪ Our Song</span>
+        <button className="music-toggle" onClick={toggleMusic} title={playing ? 'Pause' : 'Play'}>
+          {playing
+            ? <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            : <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          }
+        </button>
+      </div>
 
       <FloatingHearts />
       <Sparkles />
