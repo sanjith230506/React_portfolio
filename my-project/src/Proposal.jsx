@@ -5,7 +5,7 @@ const poems = [
   {
     title: "From the Moment I Saw You",
     lines: [
-      "From the moment I saw you, Sugunya dear,",
+      "From the moment I saw you, Suganya dear,",
       "My heart knew a joy it had never felt near.",
       "Your smile like the sunrise, your laugh like a song,",
       "With you by my side, I know I belong.",
@@ -115,7 +115,7 @@ export default function Proposal() {
         <div className="names-banner">
           <span className="name sanjith">Sanjith Senthilkumar</span>
           <span className="heart-icon">💖</span>
-          <span className="name sugunya">Sugunya</span>
+          <span className="name sugunya">Suganya</span>
         </div>
 
         <div className="poem-section">
@@ -168,7 +168,7 @@ export default function Proposal() {
             <div className="big-heart">💗</div>
             <h2 className="accepted-title">She said YES! 🎉</h2>
             <p className="accepted-msg">
-              Sanjith &amp; Sugunya — together forever, written in the stars. 🌟
+              Sanjith &amp; Suganya — together forever, written in the stars. 🌟
             </p>
             <div className="confetti-row">
               {['🎊','🌹','💫','🎉','🌸','💞','🎊','🌹','💫'].map((e, i) => (
